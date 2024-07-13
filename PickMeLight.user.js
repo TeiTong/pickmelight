@@ -1,26 +1,16 @@
 // ==UserScript==
 // @name         PickMe Light
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Affilié
 // @author       MegaMan
 // @match        https://www.amazon.fr/*
 // @icon         https://i.ibb.co/Zd9vSZz/PM-ICO-2.png
-// @updateURL    https://raw.githubusercontent.com/TeiTong/pickmelight/main/PickMeLight.user.js
-// @downloadURL  https://raw.githubusercontent.com/TeiTong/pickmelight/main/PickMeLight.user.js
 // @run-at       document-end
 // ==/UserScript==
 
-/*
-
-NOTES:
-* Votre clef API est lié à votre compte Discord
-
-*/
-
 (function() {
     'use strict';
-
 
     // Fonction pour extraire l'ASIN
     function getASINfromURL(url) {
@@ -68,6 +58,10 @@ NOTES:
     }
 
     function createButton(asin) {
+        var container = document.createElement('div');
+        container.style.display = 'inline-flex';
+        container.style.alignItems = 'center';
+
         var affiliateButton = document.createElement('a');
 
         affiliateButton.className = 'a-button a-button-primary a-button-small';
@@ -96,7 +90,20 @@ NOTES:
             affiliateButton.innerText = 'Acheter via PickMe';
             affiliateButton.target = '_blank';
         }
-        return affiliateButton;
+        affiliateButton.style.fontSize = '14px';
+        var infoText = document.createElement('span'); // Créer l'élément de texte d'explication
+        infoText.innerHTML = '<b>A quoi sert ce bouton ?</b>';
+        infoText.style.marginLeft = '5px';
+        infoText.style.color = '#CC0033';
+        infoText.style.cursor = 'pointer';
+        infoText.style.fontSize = '14px';
+        infoText.onclick = function() {
+            alert("Ce bouton permet de soutenir la communauté Vine. Il n'y a strictement aucune conséquence sur votre achat, mise à part d'aider.\n\nComment faire ?\n\nIl suffit de cliquer sur 'Acheter via PickMe' et dans la nouvelle fenêtre de cliquer sur 'Acheter sur Amazon'. Normalement le bouton sera devenu vert, il suffit alors d'ajouter le produit au panier (uniquement quand le bouton est vert) et c'est tout !\nMerci beaucoup !");
+        };
+        container.appendChild(affiliateButton);
+        container.appendChild(infoText);
+
+        return container;
     }
 
     var asinProduct = getASINfromURL(window.location.href);
@@ -114,4 +121,5 @@ NOTES:
         observer.observe(document.body, { childList: true, subtree: true });
         return;
     }
+
 })();
