@@ -6,6 +6,8 @@
 // @author       MegaMan
 // @match        https://www.amazon.fr/*
 // @icon         https://i.ibb.co/Zd9vSZz/PM-ICO-2.png
+// @updateURL    https://raw.githubusercontent.com/TeiTong/pickmelight/main/PickMeLight.user.js
+// @downloadURL  https://raw.githubusercontent.com/TeiTong/pickmelight/main/PickMeLight.user.js
 // @run-at       document-end
 // ==/UserScript==
 
@@ -121,5 +123,4 @@
         observer.observe(document.body, { childList: true, subtree: true });
         return;
     }
-
 })();
