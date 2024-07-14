@@ -87,24 +87,24 @@
             affiliateButton.style.pointerEvents = 'none'; // Empêchez tout événement de clic
             affiliateButton.style.cursor = 'default';
             affiliateButton.style.border = '1px solid black';
+            container.appendChild(affiliateButton);
         } else {
             affiliateButton.href = `https://pickme.alwaysdata.net/monsieurconso/index.php?asin=${asin}`;
             affiliateButton.innerText = 'Acheter via PickMe';
             affiliateButton.target = '_blank';
+            var infoText = document.createElement('span'); // Créer l'élément de texte d'explication
+            infoText.innerHTML = '<b>A quoi sert ce bouton ?</b>';
+            infoText.style.marginLeft = '5px';
+            infoText.style.color = '#CC0033';
+            infoText.style.cursor = 'pointer';
+            infoText.style.fontSize = '14px';
+            infoText.onclick = function() {
+                alert("Ce bouton permet de soutenir la communauté Vine. Il n'y a strictement aucune conséquence sur votre achat, mise à part d'aider.\n\nComment faire ?\n\nIl suffit de cliquer sur 'Acheter via PickMe' et dans la nouvelle fenêtre de cliquer sur 'Acheter sur Amazon'. Normalement le bouton sera devenu vert, il suffit alors d'ajouter le produit au panier (uniquement quand le bouton est vert) et c'est tout !\nMerci beaucoup !");
+            };
+            container.appendChild(affiliateButton);
+            container.appendChild(infoText);
         }
         affiliateButton.style.fontSize = '14px';
-        var infoText = document.createElement('span'); // Créer l'élément de texte d'explication
-        infoText.innerHTML = '<b>A quoi sert ce bouton ?</b>';
-        infoText.style.marginLeft = '5px';
-        infoText.style.color = '#CC0033';
-        infoText.style.cursor = 'pointer';
-        infoText.style.fontSize = '14px';
-        infoText.onclick = function() {
-            alert("Ce bouton permet de soutenir la communauté Vine. Il n'y a strictement aucune conséquence sur votre achat, mise à part d'aider.\n\nComment faire ?\n\nIl suffit de cliquer sur 'Acheter via PickMe' et dans la nouvelle fenêtre de cliquer sur 'Acheter sur Amazon'. Normalement le bouton sera devenu vert, il suffit alors d'ajouter le produit au panier (uniquement quand le bouton est vert) et c'est tout !\nMerci beaucoup !");
-        };
-        container.appendChild(affiliateButton);
-        container.appendChild(infoText);
-
         return container;
     }
 
