@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PickMe Light
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Affilié
 // @author       MegaMan
 // @match        https://www.amazon.fr/*
@@ -89,7 +89,7 @@
             affiliateButton.style.border = '1px solid black';
             container.appendChild(affiliateButton);
         } else {
-            affiliateButton.href = `https://pickme.alwaysdata.net/monsieurconso/index.php?asin=${asin}`;
+            affiliateButton.href = `https://pickme.alwaysdata.net/monsieurconso/product.php?asin=${asin}`;
             affiliateButton.innerText = 'Acheter via PickMe';
             affiliateButton.target = '_blank';
             var infoText = document.createElement('span'); // Créer l'élément de texte d'explication
