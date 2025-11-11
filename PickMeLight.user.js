@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PickMe Light
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Ajoute le bouton affilié "Acheter via PickMe" sur les pages produits Amazon
 // @author       MegaMan
 // @match        https://www.amazon.fr/*
@@ -49,6 +49,17 @@
 
     function findButtonPlacement() {
         const candidates = [
+            {
+                selector: '#corePriceDisplay_desktop_feature_div',
+                getPlacement: element => {
+                    const targetSection = element.querySelector('.a-section.a-spacing-none') || element;
+                    return { type: 'append', node: targetSection };
+                }
+            },
+            {
+                selector: '#corePriceDisplay_mobile_feature_div',
+                getPlacement: element => ({ type: 'append', node: element })
+            },
             {
                 selector: '#buyboxAccordion .a-accordion-active .basisPriceLegalMessage',
                 getPlacement: element => ({ type: 'after', node: element })
